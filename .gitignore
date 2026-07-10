@@ -1,0 +1,20 @@
+# Dependencies and build output
+node_modules/
+dist/
+
+# Design and agent working files
+DesignRef/
+.impeccable/
+
+# Automated tests and generated reports
+tests/
+test-results/
+playwright-report/
+playwright.config.ts
+
+# Local tooling and logs
+*.log
+*.tsbuildinfo
+.vite/
+.DS_Store
+Thumbs.db

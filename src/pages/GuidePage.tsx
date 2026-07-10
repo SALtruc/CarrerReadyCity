@@ -1,0 +1,4 @@
+import { useNavigate } from 'react-router-dom';
+import { Brand, GameButton, GameShell, Topbar } from '../components/GameUI';
+
+export default function GuidePage(){const navigate=useNavigate();return <GameShell><Topbar/><section className="panel guide"><Brand/><div className="guide-card"><h1>Guide book</h1><ol><li><span><strong>Visit 6 places in the city</strong>Each has a few quick activities to try out.</span></li><li><span><strong>Meet your tour guide</strong>She'll meet you at each place and ask a few casual questions.</span></li><li><span><strong>Get your career profile</strong>See your top place matches and the careers that fit your profile.</span></li></ol></div><p className="guide-note"><b>i</b>This game is based on the Holland Occupational Themes (RIASEC), developed by psychologist Dr. John L. Holland.</p><GameButton onClick={()=>navigate('/loading')}>Start Exploring</GameButton></section></GameShell>}
