@@ -8,6 +8,7 @@ import LoadingPage from './pages/LoadingPage';
 import ProfilePage from './pages/ProfilePage';
 import QuizPage from './pages/QuizPage';
 import ResultsPage from './pages/ResultsPage';
+import SidPage from './pages/SidPage';
 import StartPage from './pages/StartPage';
 
 function ScrollToTop(){
@@ -22,6 +23,7 @@ export default function App(){return <><ScrollToTop/><AnimatePresence mode="wait
   <Route path="/" element={<StartPage/>}/>
   <Route path="/avatar" element={<AvatarPage/>}/>
   <Route path="/profile" element={<ProfilePage/>}/>
+  <Route path="/sid" element={<SidPage/>}/>
   <Route path="/guide" element={<GuidePage/>}/>
   <Route path="/loading" element={<LoadingPage/>}/>
   <Route path="/city" element={<CityPage/>}/>

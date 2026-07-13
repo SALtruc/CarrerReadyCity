@@ -8,6 +8,6 @@ export default function StartPage() {
     <Brand/>
     <div className="speech">Are you ready to find <strong>where you belong?</strong></div>
     <Mascot/>
-    <motion.button className="start-button" onClick={()=>navigate('/avatar')} whileHover={{rotate:-3,scale:1.04}} whileTap={{scale:.96}}>START</motion.button>
+    <motion.button className="start-button" onClick={()=>navigate('/sid')} whileHover={{rotate:-3,scale:1.04}} whileTap={{scale:.96}}>START</motion.button>
   </section></GameShell>;
 }
