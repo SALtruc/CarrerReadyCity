@@ -27,6 +27,11 @@
 .resource-button img{display:block;width:100%;height:auto}
 .resource-button:focus-visible{outline:5px solid #fff;outline-offset:4px;border-radius:999px}
 .profile-next{width:144px;justify-self:end}
+.profile-coach-art{display:block;width:min(100%,620px);height:auto;margin:0 auto 18px}
+.loading-coach-art{display:block;width:min(100%,480px);height:auto;margin:0 auto 18px}
+.loading .loader{margin-top:-58px;position:relative;z-index:1}
+.loading>p{position:relative;z-index:1}
+.city-intro .mascot{align-self:end;width:130px;height:auto;max-height:150px;margin:0;object-position:center bottom}
 .guidebook-art{display:block;width:100%;height:auto;margin:28px auto 0}
 .start-exploring{width:min(100%,290px);margin:0 auto}
 .place-heading-art,.quiz-guide-art{width:100%;margin:0 auto}
@@ -50,4 +55,4 @@
 .sid-card .sid-success{padding:6px 10px;background:#fff;border:2px solid #050505;border-radius:999px;color:#075b2b}
 .sid-card:has(.sid-error),.sid-card:has(.sid-success){margin-bottom:28px}
 .sid-guide{margin-top:-18px}
-@media(max-width:650px){.back-mark{box-shadow:2px 3px 0 #050505}.profile-next{width:132px}.guidebook-art{margin-top:20px}.start-exploring{width:240px}.quiz-guide-art{width:calc(100% + 4px);margin-left:-2px;margin-top:14px}.quiz .place-heading{grid-template-columns:50px 1fr;column-gap:12px;padding:13px 15px}.quiz .place-heading .place-icon{width:46px;height:46px}.quiz .place-heading h1{font-size:19px}.quiz .place-heading p{font-size:14px;margin-top:3px}.sid-card{width:calc(100% - 36px);margin-top:16px;padding:0;border:0;box-shadow:none}.sid-guide{margin-top:-12px}}
+@media(max-width:650px){.back-mark{box-shadow:2px 3px 0 #050505}.profile-next{width:132px}.profile-coach-art{width:100%;margin:0 auto 16px}.loading-coach-art{width:min(100%,360px)}.loading .loader{margin-top:-44px}.city-intro .mascot{width:92px;height:auto;max-height:118px;margin:0;object-position:center bottom}.guidebook-art{margin-top:20px}.start-exploring{width:240px}.quiz-guide-art{width:calc(100% + 4px);margin-left:-2px;margin-top:14px}.quiz .place-heading{grid-template-columns:50px 1fr;column-gap:12px;padding:13px 15px}.quiz .place-heading .place-icon{width:46px;height:46px}.quiz .place-heading h1{font-size:19px}.quiz .place-heading p{font-size:14px;margin-top:3px}.sid-card{width:calc(100% - 36px);margin-top:16px;padding:0;border:0;box-shadow:none}.sid-guide{margin-top:-12px}}

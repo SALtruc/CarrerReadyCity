@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Brand, GameShell, Mascot, RESOURCE_ROOT, Topbar } from '../components/GameUI';
+import { Brand, GameShell, RESOURCE_ROOT, Topbar } from '../components/GameUI';
 import { asset } from '../lib';
 import { useGame } from '../store';
 
@@ -12,7 +12,7 @@ export default function ProfilePage() {
   const [showAccessInfo,setShowAccessInfo]=useState(false);
   function submit(event:FormEvent){event.preventDefault();if(!profile.year.trim()||!profile.program.trim()){setError('Please tell us your year and current program.');return}navigate('/guide')}
   return <GameShell><Topbar/><section className="panel form-panel"><Brand compact/>
-    <div className="guide-row"><Mascot/><div className="speech small">Tell us more about yourself</div></div>
+    <img className="profile-coach-art" src={asset(RESOURCE_ROOT+'Collect information screen/Frame.png')} alt="Career City coach saying: Tell us more about yourself"/>
     <form onSubmit={submit} noValidate>
       <label><span>What year of study are you in?</span><input value={profile.year} onChange={e=>setProfile({year:e.target.value})} placeholder="e.g. Year 3"/></label>
       <label><span>What is your current program?</span><input value={profile.program} onChange={e=>setProfile({program:e.target.value})} placeholder="e.g. Digital Marketing"/></label>
