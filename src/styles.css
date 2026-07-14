@@ -32,6 +32,13 @@
 .place-heading-art,.quiz-guide-art{width:100%;margin:0 auto}
 .place-heading-art img,.quiz-guide-art img{display:block;width:100%;height:auto}
 .quiz-guide-art{margin-top:18px}
+.quiz .place-heading{display:grid;grid-template-columns:64px 1fr;column-gap:16px;align-items:center;padding:17px 20px}
+.quiz .place-heading-top{display:contents}
+.quiz .place-heading .place-icon{grid-row:1 / span 2;width:58px;height:58px}
+.quiz .place-heading h1{align-self:end}
+.quiz .place-heading p{grid-column:2;align-self:start;margin-top:5px}
+.quiz-status>strong{background:var(--place);color:var(--place-text,#050505)}
+.quiz-status i.active{background:var(--place)}
 .sid-card{width:min(100%,520px);aspect-ratio:6249/6464;margin-top:18px;padding:0;background:transparent;border:0;border-radius:0;box-shadow:none}
 .sid-frame-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
 .sid-card input{position:absolute;z-index:1;top:67%;left:12%;width:76%;height:10%;padding:0 10px;border:0;border-bottom:2px solid transparent;background:transparent;border-radius:0;box-shadow:none;text-align:center;font-size:clamp(18px,4vw,24px)}
@@ -43,4 +50,4 @@
 .sid-card .sid-success{padding:6px 10px;background:#fff;border:2px solid #050505;border-radius:999px;color:#075b2b}
 .sid-card:has(.sid-error),.sid-card:has(.sid-success){margin-bottom:28px}
 .sid-guide{margin-top:-18px}
-@media(max-width:650px){.back-mark{box-shadow:2px 3px 0 #050505}.profile-next{width:132px}.guidebook-art{margin-top:20px}.start-exploring{width:240px}.place-heading-art{width:calc(100% + 2px);margin-left:-1px}.quiz-guide-art{width:calc(100% + 4px);margin-left:-2px;margin-top:14px}.sid-card{width:calc(100% - 36px);margin-top:16px;padding:0;border:0;box-shadow:none}.sid-guide{margin-top:-12px}}
+@media(max-width:650px){.back-mark{box-shadow:2px 3px 0 #050505}.profile-next{width:132px}.guidebook-art{margin-top:20px}.start-exploring{width:240px}.quiz-guide-art{width:calc(100% + 4px);margin-left:-2px;margin-top:14px}.quiz .place-heading{grid-template-columns:50px 1fr;column-gap:12px;padding:13px 15px}.quiz .place-heading .place-icon{width:46px;height:46px}.quiz .place-heading h1{font-size:19px}.quiz .place-heading p{font-size:14px;margin-top:3px}.sid-card{width:calc(100% - 36px);margin-top:16px;padding:0;border:0;box-shadow:none}.sid-guide{margin-top:-12px}}

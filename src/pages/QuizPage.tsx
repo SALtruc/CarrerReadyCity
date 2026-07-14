@@ -11,7 +11,10 @@ export default function QuizPage(){
   if(!place)return <Navigate to="/city"/>;
   const toggle=(option:string)=>setSelected(current=>current.includes(option)?current.filter(value=>value!==option):[...current,option]);
   return <GameShell><Topbar/><section className="quiz" style={{'--place':place.color,'--place-text':place.dark?'#fff':'#050505'} as React.CSSProperties}>
-    <div className="place-heading-art"><h1 className="visually-hidden">{place.name}</h1><img src={asset(RESOURCE_ROOT+place.placeCard)} alt={place.description}/></div>
+    <div className="place-heading">
+      <div className="place-heading-top"><span className="place-icon"><img src={asset(RESOURCE_ROOT+place.icon)} alt=""/></span><h1>{place.name}</h1></div>
+      <p>{place.tagline}</p>
+    </div>
     <div className="quiz-guide-art"><img src={asset(RESOURCE_ROOT+place.bubbleChat)} alt={`Hi there! Welcome to ${place.name}. Select everything that feels true to you. You can choose more than one, or none at all.`}/></div>
     <div className="question-sheet"><div className="color-bar">{places.map(item=><i key={item.slug} style={{background:item.color}}/>)}</div>
       <div className="quiz-status" aria-live="polite"><strong>{selected.length}</strong><span>answers feel like you</span><div>{place.questions.map((_,index)=><i className={selected.some(option=>place.questions[index].options.includes(option))?'active':''} key={index}/>)}</div></div>
