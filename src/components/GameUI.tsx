@@ -36,6 +36,6 @@ export function Mascot() {
 
 export function GameButton({children,onClick,type='button',disabled=false,className=''}:{children:ReactNode;onClick?:()=>void;type?:'button'|'submit';disabled?:boolean;className?:string}) {
   return <motion.button whileHover={disabled?undefined:{y:-2}} whileTap={disabled?undefined:{scale:.98}} transition={{duration:.15}} className={cn('cta',className)} type={type} onClick={onClick} disabled={disabled}>
-    {children}<span aria-hidden="true">→</span>
+    {children}<span aria-hidden="true">›</span>
   </motion.button>;
 }
