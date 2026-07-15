@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'motion/react';
 import type { ReactNode } from 'react';
-import { asset, cn } from '../lib';
+import { cn, optimizedAsset } from '../lib';
 import { useGame } from '../store';
 
 export const RESOURCE_ROOT = 'Career City Resources/';
@@ -19,19 +19,19 @@ export function GameShell({children,cyan=false}: {children:ReactNode;cyan?:boole
 }
 
 export function Brand({compact=false}:{compact?:boolean}) {
-  return <img className={cn('brand',compact&&'compact')} src={asset(RESOURCE_ROOT+'logo.png')} alt="The Career City"/>;
+  return <img className={cn('brand',compact&&'compact')} src={optimizedAsset(RESOURCE_ROOT+'logo.png')} decoding="async" alt="The Career City"/>;
 }
 
 export function Topbar() {
   const avatar = useGame(s=>s.profile.avatar);
   return <header className="topbar">
     <button className="back-mark" aria-label="Go back" onClick={()=>history.back()}>Back</button>
-    <img src={asset(RESOURCE_ROOT+'avatar icon/'+avatars[avatar<0?0:avatar])} alt="Your avatar"/>
+    <img src={optimizedAsset(RESOURCE_ROOT+'avatar icon/'+avatars[avatar<0?0:avatar])} decoding="async" alt="Your avatar"/>
   </header>;
 }
 
 export function Mascot() {
-  return <img className="mascot" src={asset(RESOURCE_ROOT+'Start screen/Frame 484.png')} alt="Career City guide pointing upward"/>;
+  return <img className="mascot" src={optimizedAsset(RESOURCE_ROOT+'Start screen/Frame 484.png')} decoding="async" fetchPriority="high" alt="Career City guide pointing upward"/>;
 }
 
 export function GameButton({children,onClick,type='button',disabled=false,className=''}:{children:ReactNode;onClick?:()=>void;type?:'button'|'submit';disabled?:boolean;className?:string}) {
