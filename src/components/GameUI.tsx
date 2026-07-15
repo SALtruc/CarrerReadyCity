@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'motion/react';
-import type { ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { cn, optimizedAsset } from '../lib';
 import { useGame } from '../store';
 
@@ -24,9 +25,35 @@ export function Brand({compact=false}:{compact?:boolean}) {
 
 export function Topbar() {
   const avatar = useGame(s=>s.profile.avatar);
+  const reset = useGame(s=>s.reset);
+  const navigate = useNavigate();
+  const [showRestart,setShowRestart] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const avatarButtonRef = useRef<HTMLButtonElement>(null);
+  useEffect(()=>{
+    const dialog=dialogRef.current;
+    if(!dialog)return;
+    if(showRestart&&!dialog.open){dialog.showModal();dialog.querySelector<HTMLButtonElement>('button')?.focus()}
+    if(!showRestart&&dialog.open)dialog.close();
+  },[showRestart]);
+  const restart = () => {
+    reset();
+    setShowRestart(false);
+    navigate('/',{replace:true});
+  };
   return <header className="topbar">
     <button className="back-mark" aria-label="Go back" onClick={()=>history.back()}>Back</button>
-    <img src={optimizedAsset(RESOURCE_ROOT+'avatar icon/'+avatars[avatar<0?0:avatar])} decoding="async" alt="Your avatar"/>
+    {avatar>=0?<motion.button ref={avatarButtonRef} className="avatar-action" type="button" aria-label="Retake game" title="Retake game" onClick={()=>setShowRestart(true)} whileHover={{rotate:4,scale:1.06}} whileTap={{scale:.92}}>
+      <img src={optimizedAsset(RESOURCE_ROOT+'avatar icon/'+avatars[avatar])} decoding="async" alt=""/>
+    </motion.button>:<img src={optimizedAsset(RESOURCE_ROOT+'avatar icon/'+avatars[0])} decoding="async" alt="Career City avatar"/>}
+    <dialog ref={dialogRef} className="restart-modal" aria-labelledby="restart-title" onCancel={()=>setShowRestart(false)} onClose={()=>avatarButtonRef.current?.focus()} onMouseDown={event=>{if(event.target===event.currentTarget)setShowRestart(false)}}>
+      <motion.div className="restart-dialog" initial={{opacity:0,scale:.94,y:12}} animate={showRestart?{opacity:1,scale:1,y:0}:{opacity:0}}>
+        <img src={optimizedAsset(RESOURCE_ROOT+'avatar icon/'+avatars[avatar])} alt="Your avatar"/>
+        <h2 id="restart-title">Retake the game?</h2>
+        <p>Your current answers and city progress will be cleared.</p>
+        <div><button type="button" onClick={()=>setShowRestart(false)}>Keep playing</button><button type="button" className="confirm-restart" onClick={restart}>Start again</button></div>
+      </motion.div>
+    </dialog>
   </header>;
 }
 
