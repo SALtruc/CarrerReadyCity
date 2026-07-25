@@ -14,8 +14,8 @@ export default function ProfilePage() {
   return <GameShell><Topbar/><section className="panel form-panel"><Brand compact/>
     <img className="profile-coach-art" src={asset(RESOURCE_ROOT+'Collect information screen/Frame.png')} alt="Career City coach saying: Tell us more about yourself"/>
     <form onSubmit={submit} noValidate>
-      <label><span>What year of study are you in?</span><input value={profile.year} onChange={e=>setProfile({year:e.target.value})} placeholder="e.g. Year 3"/></label>
-      <label><span>What is your current program?</span><input value={profile.program} onChange={e=>setProfile({program:e.target.value})} placeholder="e.g. Digital Marketing"/></label>
+      <label><span>What year of study are you in?</span><input value={profile.year} onChange={e=>{setProfile({year:e.target.value});setError('')}} placeholder="e.g. Year 3"/></label>
+      <label><span>What is your current program?</span><input value={profile.program} onChange={e=>{setProfile({program:e.target.value});setError('')}} placeholder="e.g. Digital Marketing"/></label>
       <label>
         <span>Access code <em>(Optional)</em><button type="button" className="info-btn" aria-label="What is an access code?" aria-expanded={showAccessInfo} onClick={()=>setShowAccessInfo(value=>!value)}>i</button></span>
         <input value={profile.accessCode} onChange={e=>setProfile({accessCode:e.target.value})} placeholder="e.g. CXVED"/>
