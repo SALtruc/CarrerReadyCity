@@ -18,6 +18,6 @@ export default function CityPage(){
     {visited.length===6&&<motion.div className="tour-complete" initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} role="status"><strong>City tour complete!</strong><span>Your career profile is ready.</span></motion.div>}
     <div className="road" aria-hidden="true"/>
     <div className="place-grid">{places.map((place,index)=><motion.button key={place.slug} onClick={()=>navigate('/place/'+place.slug)} className="place place-art" aria-label={`${visited.includes(place.slug)?'Revisit':'Visit'} ${place.name}`} style={{'--place':place.color,'--delay':`${index*.05}s`} as React.CSSProperties} whileHover={{y:-5}} whileTap={{scale:.98}}><img src={optimizedAsset(RESOURCE_ROOT+'City map/'+(visited.includes(place.slug)?place.asset.replace('.png',' done.png'):place.asset))} loading={index>1?'lazy':'eager'} decoding="async" alt=""/></motion.button>)}</div>
-    {visited.length===6&&<GameButton className="results-fab" onClick={()=>navigate('/results')}>See my result</GameButton>}
+    {visited.length===6&&<motion.div className="results-fab" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:.35,ease:'easeOut'}}><GameButton onClick={()=>navigate('/results')}>See my result</GameButton></motion.div>}
   </section></GameShell>;
 }
