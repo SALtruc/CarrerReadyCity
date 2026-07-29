@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'motion/react';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { cn, optimizedAsset } from '../lib';
+import { asset, cn, optimizedAsset } from '../lib';
 import { useGame } from '../store';
 
 export const RESOURCE_ROOT = 'Career City Resources/';
@@ -23,13 +23,13 @@ export function Brand({compact=false}:{compact?:boolean}) {
   return <img className={cn('brand',compact&&'compact')} src={optimizedAsset(RESOURCE_ROOT+'logo.png')} decoding="async" alt="The Career City"/>;
 }
 
-export function Topbar() {
+export function LogoBadge() {
   const avatar = useGame(s=>s.profile.avatar);
   const reset = useGame(s=>s.reset);
   const navigate = useNavigate();
   const [showRestart,setShowRestart] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const avatarButtonRef = useRef<HTMLButtonElement>(null);
+  const badgeRef = useRef<HTMLButtonElement>(null);
   useEffect(()=>{
     const dialog=dialogRef.current;
     if(!dialog)return;
@@ -41,19 +41,26 @@ export function Topbar() {
     setShowRestart(false);
     navigate('/',{replace:true});
   };
-  return <header className="topbar">
-    <button className="back-mark" aria-label="Go back" onClick={()=>history.back()}>Back</button>
-    {avatar>=0?<motion.button ref={avatarButtonRef} className="avatar-action" type="button" aria-label="Retake game" title="Retake game" onClick={()=>setShowRestart(true)} whileHover={{rotate:4,scale:1.06}} whileTap={{scale:.92}}>
-      <img src={optimizedAsset(RESOURCE_ROOT+'avatar icon/'+avatars[avatar])} decoding="async" alt=""/>
-    </motion.button>:<img src={optimizedAsset(RESOURCE_ROOT+'avatar icon/'+avatars[0])} decoding="async" alt="Career City avatar"/>}
-    <dialog ref={dialogRef} className="restart-modal" aria-labelledby="restart-title" onCancel={()=>setShowRestart(false)} onClose={()=>avatarButtonRef.current?.focus()} onMouseDown={event=>{if(event.target===event.currentTarget)setShowRestart(false)}}>
+  return <>
+    <motion.button ref={badgeRef} className="logo-badge" type="button" aria-label="Return to the starting screen" onClick={()=>setShowRestart(true)} whileHover={{scale:1.06}} whileTap={{scale:.9}}>
+      <img src={asset(RESOURCE_ROOT+'logo-badge.png')} decoding="async" alt=""/>
+    </motion.button>
+    <dialog ref={dialogRef} className="restart-modal" aria-labelledby="restart-title" onCancel={()=>setShowRestart(false)} onClose={()=>badgeRef.current?.focus()} onMouseDown={event=>{if(event.target===event.currentTarget)setShowRestart(false)}}>
       <motion.div className="restart-dialog" initial={{opacity:0,scale:.94,y:12}} animate={showRestart?{opacity:1,scale:1,y:0}:{opacity:0}}>
-        <img src={optimizedAsset(RESOURCE_ROOT+'avatar icon/'+avatars[avatar])} alt="Your avatar"/>
-        <h2 id="restart-title">Retake the game?</h2>
+        <img src={optimizedAsset(RESOURCE_ROOT+'avatar icon/'+avatars[avatar>=0?avatar:0])} alt="Your avatar"/>
+        <h2 id="restart-title">Start over?</h2>
         <p>Your current answers and city progress will be cleared.</p>
         <div><button type="button" onClick={()=>setShowRestart(false)}>Keep playing</button><button type="button" className="confirm-restart" onClick={restart}>Start again</button></div>
       </motion.div>
     </dialog>
+  </>;
+}
+
+export function Topbar() {
+  const avatar = useGame(s=>s.profile.avatar);
+  return <header className="topbar">
+    <LogoBadge/>
+    <img src={optimizedAsset(RESOURCE_ROOT+'avatar icon/'+avatars[avatar>=0?avatar:0])} decoding="async" alt={avatar>=0?'':'Career City avatar'}/>
   </header>;
 }
 
