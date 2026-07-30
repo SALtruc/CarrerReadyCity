@@ -68,8 +68,8 @@
 .game-frame:has(.sid-page){--sid-stage-w:min(100vw,560px,calc(100dvh * .64));--sid-topbar-h:clamp(74px,9dvh,96px)}
 .game-frame:has(.sid-page) .topbar{width:var(--sid-stage-w);height:var(--sid-topbar-h);margin:0 auto;padding:clamp(8px,1.2dvh,14px) clamp(28px,7vw,46px) 0}
 .game-frame:has(.sid-page) .topbar>img{width:clamp(62px,8dvh,76px);height:clamp(62px,8dvh,76px);object-fit:cover}
-.game-frame:has(.sid-page) .logo-badge{width:clamp(58px,7.4dvh,70px);aspect-ratio:1;display:block;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible}
-.game-frame:has(.sid-page) .logo-badge img{display:block;width:100%;height:100%;border:0;border-radius:0;background:transparent;box-shadow:none;object-fit:contain}
+.game-frame:has(.sid-page) .logo-badge{width:clamp(58px,7.4dvh,70px);height:auto;display:block;padding:0;border:0;border-radius:50%;background:transparent;box-shadow:4px 5px 0 #050505;overflow:visible}
+.game-frame:has(.sid-page) .logo-badge img{display:block;width:clamp(64px,8dvh,78px);height:clamp(64px,8dvh,78px);border:3px solid #050505;border-radius:50%;background:#fff;box-shadow:4px 5px 0 #050505;object-fit:contain}
 .sid-page{width:var(--sid-stage-w);max-width:none;min-height:calc(100dvh - var(--sid-topbar-h));margin:0 auto;padding-bottom:0;position:relative;display:flex;flex-direction:column;align-items:center;overflow:hidden}
 .sid-card{width:min(calc(100% - 28px),520px,calc(52dvh * .9668));margin:clamp(10px,3dvh,28px) auto 0}
 .sid-frame-art{z-index:1}
@@ -87,6 +87,7 @@
   .game-frame:has(.sid-page) .topbar{padding:14px 28px 0}
   .game-frame:has(.sid-page) .topbar>img{width:64px;height:64px}
   .game-frame:has(.sid-page) .logo-badge{width:56px}
+  .game-frame:has(.sid-page) .logo-badge img{width:64px;height:64px}
   .sid-page{min-height:calc(100dvh - var(--sid-topbar-h));overflow:hidden}
   .sid-card{width:min(calc(100% - 28px),calc(46.5dvh * .9668));margin-top:clamp(12px,2.4dvh,20px)}
   .sid-frame input{top:73.9%;left:15%;width:70%;height:9%;font-size:19px}
@@ -102,13 +103,13 @@
 .info-overlay{position:absolute;right:0;top:calc(100% + 12px);width:min(100%,430px);margin:0;z-index:90;border:3px solid #050505;border-radius:14px;background:#fff;box-shadow:8px 9px 0 #050505}
 .info-overlay::before{content:'';position:absolute;right:28px;top:-12px;width:18px;height:18px;background:#fff;border-left:3px solid #050505;border-top:3px solid #050505;transform:rotate(45deg)}
 .profile-coach-art{display:block;position:relative;z-index:1;width:min(110%,680px);aspect-ratio:1995/995;margin:24px auto -10px;overflow:visible;transform:translateY(12px);-webkit-mask-image:none;mask-image:none}
-.profile-coach-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;-webkit-mask-image:linear-gradient(to bottom,#000 88%,transparent 100%);mask-image:linear-gradient(to bottom,#000 88%,transparent 100%)}
+.profile-coach-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;clip-path:inset(0 54% 0 0);-webkit-mask-image:linear-gradient(to bottom,#000 88%,transparent 100%);mask-image:linear-gradient(to bottom,#000 88%,transparent 100%)}
 .profile-coach-art span{position:absolute;left:34%;right:1%;top:18%;min-height:26%;padding:0 18px;display:flex;align-items:center;justify-content:center;background:#fff;border:3px solid #050505;border-radius:999px;box-shadow:7px 8px 0 #050505;font-weight:800;font-size:clamp(15px,2vw,20px);line-height:1;white-space:nowrap}
 .form-panel form{position:relative;z-index:2}
 
 @media(max-width:650px){
   .profile-coach-art{width:120%;margin:30px 0 -12px -4%;transform:none}
-  .profile-coach-art span{left:28%;right:0;top:10%;min-height:34%;padding-inline:12px;border-width:2px;box-shadow:5px 6px 0 #050505;font-size:14px}
+  .profile-coach-art span{left:28%;right:0;top:8%;min-height:41%;padding-inline:12px;border-width:2px;box-shadow:5px 6px 0 #050505;font-size:14px}
   .form-panel form{margin-top:12px}
   .info-overlay{left:0;right:auto;top:auto;bottom:calc(100% + 12px);width:100%;padding:13px 16px;font-size:13px;line-height:1.38}
   .info-overlay::before{top:auto;right:33px;bottom:-12px;border:0;border-right:3px solid #050505;border-bottom:3px solid #050505}
