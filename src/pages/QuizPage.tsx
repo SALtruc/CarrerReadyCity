@@ -11,15 +11,12 @@ const StaticArtwork = memo(function StaticArtwork({path,alt}:{path:string;alt:st
 
 export default function QuizPage(){
   const {slug}=useParams(); const navigate=useNavigate(); const place=places.find(item=>item.slug===slug);
-  const answers=useGame(s=>s.answers); const previous=answers[slug||'']||[]; const saveAnswer=useGame(s=>s.answer); const visited=useGame(s=>s.visited); const [selected,setSelected]=useState<string[]>(previous);
+  const answers=useGame(s=>s.answers); const previous=answers[slug||'']||[]; const saveAnswer=useGame(s=>s.answer); const [selected,setSelected]=useState<string[]>(previous);
   if(!place)return <Navigate to="/city"/>;
   const toggle=(option:string)=>setSelected(current=>current.includes(option)?current.filter(value=>value!==option):[...current,option]);
   function finish(){
     saveAnswer(place!.slug,selected,place!.code);
-    if(previous.length){navigate('/city');return}
-    const updatedVisited=visited.includes(place!.slug)?visited:[...visited,place!.slug];
-    const next=places.find(item=>!updatedVisited.includes(item.slug));
-    navigate(next?`/place/${next.slug}`:'/city');
+    navigate('/city');
   }
   return <GameShell><Topbar/><section className="quiz" style={{'--place':place.color,'--place-text':place.dark?'#fff':'#050505'} as React.CSSProperties}>
     <div className="place-heading">

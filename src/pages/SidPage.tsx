@@ -22,15 +22,15 @@ export default function SidPage(){
   },[navigate,verified]);
 
   function normalizeSid(raw:string){
-    const digits=raw.replace(/[^0-9]/g,'').slice(0,9);
+    const digits=raw.replace(/[^0-9]/g,'').slice(0,7);
     return digits?`S${digits}`:'';
   }
 
   function submit(event:FormEvent){
     event.preventDefault();
     const normalized=sid.trim().toUpperCase();
-    if(!/^S?\d{7,9}$/.test(normalized)){
-      setError('Enter a valid student ID, for example S1234567.');
+    if(!/^S?\d{7}$/.test(normalized)){
+      setError('Enter your 7-digit student ID, for example S1234567.');
       setVerified(false);
       return;
     }
@@ -45,7 +45,7 @@ export default function SidPage(){
         <img className="sid-frame-art" src={asset(RESOURCE_ROOT+'Collect SID Screen/sid-frame-extended.png')} alt=""/>
         <div className="visually-hidden"><p>This is exclusively for</p><h1>RMIT Students</h1></div>
         <label className="visually-hidden" htmlFor="student-id">Enter your Student ID</label>
-        <input id="student-id" name="student-id" inputMode="numeric" autoComplete="off" value={sid} onChange={event=>{setProfile({sid:normalizeSid(event.target.value)});setVerified(false);setError('')}} aria-describedby={error?'sid-error':undefined} aria-invalid={Boolean(error)} placeholder="e.g. S1234567"/>
+        <input id="student-id" name="student-id" inputMode="numeric" autoComplete="off" maxLength={8} pattern="S?[0-9]{7}" value={sid} onChange={event=>{setProfile({sid:normalizeSid(event.target.value)});setVerified(false);setError('')}} aria-describedby={error?'sid-error':undefined} aria-invalid={Boolean(error)} placeholder="e.g. S1234567"/>
         <motion.button className="resource-button sid-verify" type="submit" aria-label="Verify SID" disabled={verified} whileHover={verified?undefined:{y:-3,scale:1.015}} whileTap={verified?undefined:{scale:.97}}><img src={asset(RESOURCE_ROOT+'Collect SID Screen/Frame 480.png')} alt=""/></motion.button>
       </div>
       {error&&<motion.p id="sid-error" className="sid-error" role="alert" initial={{opacity:0,y:-14}} animate={{opacity:1,y:0}}>{error}</motion.p>}
