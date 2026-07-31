@@ -104,12 +104,12 @@
 .info-overlay::before{content:'';position:absolute;right:28px;top:-12px;width:18px;height:18px;background:#fff;border-left:3px solid #050505;border-top:3px solid #050505;transform:rotate(45deg)}
 .profile-coach-art{display:block;position:relative;z-index:1;width:min(110%,680px);aspect-ratio:1995/995;margin:24px auto -10px;overflow:visible;transform:translate(8px,12px);-webkit-mask-image:none;mask-image:none}
 .profile-coach-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;clip-path:inset(0 60% 0 0);transform:translateY(44px);-webkit-mask-image:linear-gradient(to bottom,#000 88%,transparent 100%);mask-image:linear-gradient(to bottom,#000 88%,transparent 100%)}
-.profile-coach-art span{position:absolute;left:34%;right:1%;top:18%;min-height:26%;padding:0 18px;display:flex;align-items:center;justify-content:center;background:#fff;border:3px solid #050505;border-radius:999px;box-shadow:7px 8px 0 #050505;font-weight:800;font-size:13px;line-height:1;white-space:nowrap}
+.profile-coach-art span{position:absolute;left:34%;right:1%;top:18%;min-height:26%;padding:0 18px;display:flex;align-items:center;justify-content:center;background:#fff;border:3px solid #050505;border-radius:999px;box-shadow:7px 8px 0 #050505;font-weight:800;font-size:clamp(17px,2.6vw,21px);line-height:1.15;text-align:center;text-wrap:balance}
 .form-panel form{position:relative;z-index:2}
 
 @media(max-width:650px){
   .profile-coach-art{width:120%;margin:48px 0 -10px -4%;transform:translateX(10px)}
-  .profile-coach-art span{left:28%;right:10%;top:8%;min-height:41%;padding-inline:12px;border-width:2px;box-shadow:5px 6px 0 #050505}
+  .profile-coach-art span{left:25%;right:8%;top:8%;min-height:41%;padding-inline:16px;border-width:2px;box-shadow:5px 6px 0 #050505;font-size:clamp(17px,4.4vw,19px)}
   .form-panel form{margin-top:18px}
   .info-overlay{left:0;right:auto;top:auto;bottom:calc(100% + 12px);width:100%;padding:13px 16px;font-size:13px;line-height:1.38}
   .info-overlay::before{top:auto;right:33px;bottom:-12px;border:0;border-right:3px solid #050505;border-bottom:3px solid #050505}
@@ -119,6 +119,15 @@
   .sid-guide{width:118%;margin-top:auto;margin-left:-12%;margin-bottom:0}
   .sid-guide .sid-guide-bubble{left:39%;top:7%;min-width:54%;font-size:clamp(13px,1.55dvh,17px);box-shadow:6px 7px 0 #050505}
   .sid-guide .sid-guide-stars{left:58%;top:31%;width:30%}
+}
+
+/* Keep the Start speech bubble clear of the guide's head on short mobile viewports. */
+@media(max-width:650px){
+  .start .mascot{height:min(54dvh,54%);bottom:-1%;object-position:center bottom}
+}
+@media(max-width:650px) and (max-height:720px){
+  .start .speech{width:82%;margin-top:2dvh;padding:10px 14px;font-size:clamp(20px,5.8vw,23px)}
+  .start .mascot{height:45dvh}
 }
 
 /* Logo badge uses the transparent asset; only the avatar portrait keeps the white circle. */
