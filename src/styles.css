@@ -110,8 +110,8 @@
 
 @media(max-width:650px){
   .profile-coach-art{width:120%;margin:48px 0 -10px -4%;transform:translateX(10px)}
-  .profile-coach-art span{left:25%;right:8%;top:8%;min-height:41%;padding-inline:16px;border-width:2px;box-shadow:5px 6px 0 #050505;font-size:clamp(17px,4.4vw,19px)}
-  .profile-coach-art span::before{left:-12px;top:78%;width:18px;height:18px;border-width:2px}
+  .profile-coach-art span{left:25%;right:8%;top:2%;min-height:33%;padding-inline:14px;border-width:2px;box-shadow:5px 6px 0 #050505;font-size:clamp(15px,3.8vw,17px)}
+  .profile-coach-art span::before{left:45px;top:auto;bottom:-9px;width:16px;height:16px;border:0;border-right:2px solid #050505;border-bottom:2px solid #050505;transform:rotate(45deg)}
   .form-panel form{margin-top:18px}
   .info-overlay{left:0;right:auto;top:auto;bottom:calc(100% + 12px);width:100%;padding:13px 16px;font-size:13px;line-height:1.38}
   .info-overlay::before{top:auto;right:33px;bottom:-12px;border:0;border-right:3px solid #050505;border-bottom:3px solid #050505}
