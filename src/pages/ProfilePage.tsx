@@ -13,7 +13,7 @@ export default function ProfilePage() {
   function submit(event:FormEvent){event.preventDefault();if(!profile.year.trim()||!profile.program.trim()){setError('Please tell us your year and current program.');return}navigate('/guide')}
   return <GameShell><Topbar/><section className="panel form-panel"><Brand compact/>
     <div className="profile-coach-art" role="img" aria-label="Career City coach saying: Tell us more about yourself">
-      <img src={asset(RESOURCE_ROOT+'Collect information screen/Frame.png')} alt=""/>
+      <img src={asset(RESOURCE_ROOT+'Collect information screen/Frame-coach.png')} alt=""/>
       <span aria-hidden="true">Tell us more about yourself</span>
     </div>
     <form onSubmit={submit} noValidate>
