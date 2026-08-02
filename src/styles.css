@@ -70,7 +70,7 @@
 .game-frame:has(.sid-page) .topbar>img{width:clamp(62px,8dvh,76px);height:clamp(62px,8dvh,76px);object-fit:cover}
 .game-frame:has(.sid-page) .logo-badge{width:clamp(58px,7.4dvh,70px);height:auto;display:block;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible}
 .game-frame:has(.sid-page) .logo-badge img{display:block;width:clamp(64px,8dvh,78px);height:clamp(64px,8dvh,78px);border:0;border-radius:0;background:transparent;box-shadow:none;object-fit:contain}
-.sid-page{width:var(--sid-stage-w);max-width:none;min-height:calc(100dvh - var(--sid-topbar-h));margin:0 auto;padding-bottom:0;position:relative;display:flex;flex-direction:column;align-items:center;overflow:hidden}
+.sid-page{width:var(--sid-stage-w);max-width:none;min-height:calc(100dvh - var(--sid-topbar-h));margin:0 auto;padding-bottom:0;position:relative;display:flex;flex-direction:column;align-items:center;overflow:visible}
 .sid-card{width:min(calc(100% - 28px),520px,calc(52dvh * .9668));margin:clamp(10px,3dvh,28px) auto 0}
 .sid-frame-art{z-index:1}
 .sid-frame input{z-index:4;top:72.7%}
@@ -79,7 +79,7 @@
 .sid-guide img{position:absolute;display:block;max-width:none;object-fit:contain;pointer-events:none}
 .sid-guide .sid-guide-coach{inset:0;width:100%;height:100%;transform:translateX(2%)}
 .sid-guide .sid-guide-bubble{position:absolute;left:38%;top:8%;min-width:57%;min-height:9.6%;padding:.5% 4.4% .8%;display:flex;align-items:center;justify-content:center;background:var(--yellow);border:2px solid #050505;border-radius:999px;box-shadow:5px 6px 0 #050505;font-weight:800;font-size:clamp(13px,1.5dvh,17px);line-height:1;white-space:nowrap;z-index:2}
-.sid-guide .sid-guide-bubble::before{content:'';position:absolute;left:0;bottom:-3px;width:8%;height:44%;background:var(--yellow);border-left:2px solid #050505;border-bottom:2px solid #050505;border-radius:0 0 0 12px;transform:skewX(-24deg);z-index:-1}
+.sid-guide .sid-guide-bubble::before{content:'';position:absolute;left:16%;bottom:-8px;width:16px;height:16px;background:var(--yellow);border-right:2px solid #050505;border-bottom:2px solid #050505;border-radius:3px;transform:rotate(45deg);z-index:-1}
 .sid-guide .sid-guide-stars{inset:auto auto auto auto;left:65.7%;top:24%;width:34.3%;height:auto}
 
 @media(max-width:650px){
@@ -88,7 +88,7 @@
   .game-frame:has(.sid-page) .topbar>img{width:64px;height:64px}
   .game-frame:has(.sid-page) .logo-badge{width:56px}
   .game-frame:has(.sid-page) .logo-badge img{width:64px;height:64px}
-  .sid-page{min-height:calc(100dvh - var(--sid-topbar-h));overflow:hidden}
+  .sid-page{min-height:calc(100dvh - var(--sid-topbar-h));overflow:visible}
   .sid-card{width:min(calc(100% - 28px),calc(46.5dvh * .9668));margin-top:clamp(12px,2.4dvh,20px)}
   .sid-frame input{top:73.9%;left:15%;width:70%;height:9%;font-size:19px}
   .sid-verify{left:24%;width:52%;top:82%}
@@ -103,19 +103,21 @@
 .info-overlay{position:absolute;right:0;top:calc(100% + 12px);width:min(100%,430px);margin:0;z-index:90;border:3px solid #050505;border-radius:14px;background:#fff;box-shadow:8px 9px 0 #050505}
 .info-overlay::before{content:'';position:absolute;right:28px;top:-12px;width:18px;height:18px;background:#fff;border-left:3px solid #050505;border-top:3px solid #050505;transform:rotate(45deg)}
 .profile-coach-art{display:block;position:relative;z-index:1;width:min(110%,680px);aspect-ratio:1995/995;margin:24px auto -10px;overflow:visible;transform:translate(8px,12px);-webkit-mask-image:none;mask-image:none}
-.profile-coach-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;clip-path:inset(0 60% 0 0);transform:translateY(44px);-webkit-mask-image:linear-gradient(to bottom,#000 88%,transparent 100%);mask-image:linear-gradient(to bottom,#000 88%,transparent 100%)}
+.profile-coach-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;clip-path:inset(0 60% 0 0);transform:translateY(20px);-webkit-mask-image:linear-gradient(to bottom,#000 88%,transparent 100%);mask-image:linear-gradient(to bottom,#000 88%,transparent 100%)}
 .profile-coach-art span{position:absolute;left:34%;right:1%;top:18%;min-height:26%;padding:0 18px;display:flex;align-items:center;justify-content:center;background:#fff;border:3px solid #050505;border-radius:999px;box-shadow:7px 8px 0 #050505;font-weight:800;font-size:clamp(17px,2.6vw,21px);line-height:1.15;text-align:center;text-wrap:balance}
+.profile-coach-art span::before{content:'';position:absolute;left:13px;top:88%;width:20px;height:20px;background:#fff;border-left:3px solid #050505;border-bottom:3px solid #050505;border-radius:4px;transform:translateY(-50%) rotate(45deg);z-index:-1}
 .form-panel form{position:relative;z-index:2}
 
 @media(max-width:650px){
   .profile-coach-art{width:120%;margin:48px 0 -10px -4%;transform:translateX(10px)}
   .profile-coach-art span{left:25%;right:8%;top:8%;min-height:41%;padding-inline:16px;border-width:2px;box-shadow:5px 6px 0 #050505;font-size:clamp(17px,4.4vw,19px)}
+  .profile-coach-art span::before{left:-12px;top:78%;width:18px;height:18px;border-width:2px}
   .form-panel form{margin-top:18px}
   .info-overlay{left:0;right:auto;top:auto;bottom:calc(100% + 12px);width:100%;padding:13px 16px;font-size:13px;line-height:1.38}
   .info-overlay::before{top:auto;right:33px;bottom:-12px;border:0;border-right:3px solid #050505;border-bottom:3px solid #050505}
   .sid-card{width:min(calc(100% - 34px),calc(42dvh * .9668));margin-top:clamp(8px,1.6dvh,16px)}
   .sid-frame input{top:73.4%}
-  .sid-verify{top:81.7%}
+  .sid-verify{top:81.8%;left:26%;width:48%}
   .sid-guide{width:118%;margin-top:auto;margin-left:-12%;margin-bottom:0}
   .sid-guide .sid-guide-bubble{left:39%;top:7%;min-width:54%;font-size:clamp(13px,1.55dvh,17px);box-shadow:6px 7px 0 #050505}
   .sid-guide .sid-guide-stars{left:58%;top:31%;width:30%}
