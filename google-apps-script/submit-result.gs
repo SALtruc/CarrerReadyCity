@@ -1,4 +1,4 @@
-const SHEET_NAME = 'Results';
+const SHEET_NAME = 'CarrerCity';
 const COLUMNS = [
   'submittedAt', 'sid', 'year', 'program', 'accessCode', 'avatar', 'placesVisited',
   'hollandCode', 'scoreRealistic', 'scoreInvestigative', 'scoreArtistic',

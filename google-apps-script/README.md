@@ -9,7 +9,9 @@ Sheet. This mirrors the pattern already used in
 ## One-time setup
 
 1. Create (or open) the Google Sheet you want results saved to. Add a tab named
-   exactly `Results` (the API returns `missing_sheet` if it can't find this tab).
+   exactly `CarrerCity` (the API returns `missing_sheet` if it can't find this tab).
+   This can be the same spreadsheet the Roadmap project already saves to — just
+   add `CarrerCity` as another tab alongside its `Roadmap` tab.
 2. In the Sheet, open **Extensions → Apps Script**, delete the boilerplate, and paste
    in [`submit-result.gs`](./submit-result.gs).
 3. In the Apps Script editor, open **Project Settings → Script Properties** and add a
