@@ -156,7 +156,7 @@ function getAppsScriptErrorMessage(errorCode, statusCode) {
     case "unauthorized":
       return "Apps Script secret mismatch. Check APPS_SCRIPT_SECRET and INGEST_SECRET.";
     case "missing_sheet":
-      return "Google Sheet tab 'Results' was not found.";
+      return "Google Sheet tab 'CarrerCity' was not found.";
     case "invalid_apps_script_response":
       return "Apps Script returned an invalid response. Use the deployed /exec URL and set access to Anyone.";
     default:
