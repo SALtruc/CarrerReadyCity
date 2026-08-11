@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toPng } from 'html-to-image';
 import { Brand, GameButton, GameShell, RESOURCE_ROOT, Topbar } from '../components/GameUI';
 import { careerIdeas, places } from '../data';
 import { asset } from '../lib';
@@ -13,6 +14,23 @@ export default function ResultsPage(){
   const profile=useGame(s=>s.profile); const answers=useGame(s=>s.answers);
   const resultSubmitted=useGame(s=>s.resultSubmitted); const markResultSubmitted=useGame(s=>s.markResultSubmitted);
   const ranked=useMemo(()=>Object.entries(scores).sort((a,b)=>b[1]-a[1]),[scores]); const max=Math.max(1,...Object.values(scores));
+  const captureRef=useRef<HTMLDivElement>(null); const [saving,setSaving]=useState(false);
+  const saveToDevice=async()=>{
+    if(!captureRef.current||saving)return;
+    setSaving(true);
+    try{
+      const dataUrl=await toPng(captureRef.current,{pixelRatio:2,backgroundColor:'#2458d3'});
+      const link=document.createElement('a');
+      link.download=`career-city-result${profile.sid?`-${profile.sid}`:''}.png`;
+      link.href=dataUrl;
+      link.click();
+    }catch(error){
+      console.error('Failed to save result image',error);
+      alert("Sorry, we couldn't save your result — try taking a screenshot instead.");
+    }finally{
+      setSaving(false);
+    }
+  };
   useEffect(()=>{
     if(resultSubmitted)return;
     if(isResultSubmissionBypassed){markResultSubmitted();return}
@@ -28,10 +46,12 @@ export default function ResultsPage(){
     return()=>{cancelled=true};
   },[resultSubmitted,markResultSubmitted,profile,answers]);
   const colorFor=(code:string)=>places.find(item=>item.code===code)?.color;
-  return <GameShell><Topbar/><section className="results"><Brand/>
+  return <GameShell><Topbar/><section className="results"><div ref={captureRef}><Brand/>
     <div className="code-card"><div className="code">{ranked.slice(0,3).map(([key])=><span key={key} style={{color:colorFor(key)}}>{key}</span>)}</div><h1>Your Holland Code</h1><p>{ranked.slice(0,3).map(([key])=>hollandNames[key]).join(' · ')}</p></div>
     <div className="score-card">{Object.entries(hollandNames).map(([key,name])=><div className="score" key={key}><strong>{name}</strong><span><i style={{transform:`scaleX(${scores[key]/max})`,background:colorFor(key)}}/></span></div>)}</div>
     <h2>Where do you fit best?</h2>{ranked.slice(0,3).map(([key],index)=>{const place=places.find(item=>item.code===key)!;return <motion.details className="result-place" key={key} style={{'--place':place.color,'--place-text':place.dark?'#fff':'#050505'} as React.CSSProperties} initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} transition={{delay:index*.08}} open={index===0}><summary><span className="place-icon"><img src={asset(RESOURCE_ROOT+place.icon)} alt=""/></span><div><small>#{index+1} match</small><h3>{place.name}</h3><p>{place.description}</p></div><b aria-hidden="true">+</b></summary><div className="career-ideas"><span>Career ideas to explore</span>{careerIdeas[key].map(career=><em key={career}>{career}</em>)}</div></motion.details>})}
+    </div>
+    <GameButton className="secondary" onClick={saveToDevice} disabled={saving}>{saving?'Saving…':'Save to device'}</GameButton>
     <GameButton className="secondary" onClick={()=>navigate('/city')}>Explore again</GameButton><button className="reset" onClick={()=>{reset();navigate('/')}}>Reset my journey</button>
   </section></GameShell>;
 }

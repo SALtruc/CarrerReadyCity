@@ -11,6 +11,7 @@
   "dependencies": {
     "@vitejs/plugin-react": "latest",
     "clsx": "latest",
+    "html-to-image": "^1.11.13",
     "motion": "latest",
     "react": "latest",
     "react-dom": "latest",
