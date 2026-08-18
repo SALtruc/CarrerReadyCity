@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toPng } from 'html-to-image';
+import { toBlob } from 'html-to-image';
 import { Brand, GameButton, GameShell, RESOURCE_ROOT, Topbar } from '../components/GameUI';
 import { careerIdeas, places } from '../data';
 import { asset } from '../lib';
@@ -19,12 +19,28 @@ export default function ResultsPage(){
     if(!captureRef.current||saving)return;
     setSaving(true);
     try{
-      const dataUrl=await toPng(captureRef.current,{pixelRatio:2,backgroundColor:'#2458d3'});
+      const blob=await toBlob(captureRef.current,{pixelRatio:2,backgroundColor:'#2458d3'});
+      if(!blob)throw new Error('No image data produced');
+      const filename=`career-city-result${profile.sid?`-${profile.sid}`:''}.png`;
+      const file=new File([blob],filename,{type:'image/png'});
+      const nav=navigator as Navigator&{canShare?:(data?:ShareData)=>boolean};
+      // On phones, the native share sheet lets students pick "Save Image"/"Save
+      // to Photos" themselves — far more reliable than <a download>, which iOS
+      // Safari often just opens in a new tab instead of actually downloading.
+      if(nav.canShare?.({files:[file]})){
+        await navigator.share({files:[file],title:'My Holland Code — The Career City'});
+        return;
+      }
+      const url=URL.createObjectURL(blob);
       const link=document.createElement('a');
-      link.download=`career-city-result${profile.sid?`-${profile.sid}`:''}.png`;
-      link.href=dataUrl;
+      link.download=filename;
+      link.href=url;
+      document.body.appendChild(link);
       link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
     }catch(error){
+      if((error as {name?:string})?.name==='AbortError')return; // user dismissed the share sheet
       console.error('Failed to save result image',error);
       alert("Sorry, we couldn't save your result — try taking a screenshot instead.");
     }finally{
